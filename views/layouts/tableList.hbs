@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Title</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+        .row.content {
+            height: 550px
+        }
+
+        /* Set gray background color and 100% height */
+        .sidenav {
+            background-color: #f1f1f1;
+            height: 100%;
+        }
+
+        /* On small screens, set height to 'auto' for the grid */
+        @media screen and (max-width: 767px) {
+            .row.content {
+                height: auto;
+            }
+        }
+
+        .btnsuaxoa button {
+            background-color: blue;
+            color: beige;
+            border-radius: 5px;
+
+        }
+
+        .nav-item {
+            margin-right: 20px;
+            margin-bottom: 20px;
+        }
+
+        .nav-item {
+            list-style: none;
+        }
+    </style>
+</head>
+
+
+<body>
+    <div class="container-fluid">
+        <div class="row content">
+            <div class="col-sm-3 sidenav hidden-xs">
+                <h1>Cửa Hàng quần áo</h1>
+                <ul class="nav nav-pills nav-stacked">
+                    <li><a href="/quanly">Dashboard</a></li>
+                    <li><a href="/userProfile">Users Profile</a></li>
+                    <li class="active"><a href="/tableList">Table List</a></li>
+                    <li><a href="#section3">Map</a></li>
+                </ul><br>
+            </div>
+            <br>
+
+            <div class="col-sm-9">
+                <div>
+                    <h1>Sản Phẩm</h1>
+                    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+                        <div class="row">
+                            <h1>Danh sách sản phẩm</h1>
+                        </div>
+                        <form action="addNewPr" method="get">
+                            <button type="submit">Thêm sản phẩm</button>
+                        </form>
+
+                        <div class="content table-responsive table-full-width">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">STT</th>
+                                        <th scope="col">Tên sản phẩm</th>
+                                        <th scope="col">Đơn giá</th>
+                                        <th scope="col">Hình ảnh</th>
+                                        <th scope="col">Màu sắc</th>
+                                        <th scope="col">Loại sản phẩm</th>
+                                        <th scope="col">Khách hàng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#each prData}}
+                                    <tr>
+                                        <th scope="row">{{@index}}</th>
+                                        <td>{{namePr}}</td>
+                                        <td>{{price}}</td>
+                                        <td>{{imgPr}}</td>
+                                        <td>{{color}}</td>
+                                        <td>{{type}}</td>
+                                        <td>{{nameUser}}</td>
+                                        <td class="col-1">
+                                            <form method="get" action="updatePr">
+                                                <button type="submit">Sửa</button>
+                                                <input value={{id}} class="d-none" name="prNum">
+                                            </form>
+                                            <form method="get" action="deletePr">
+                                                <button type="submit">Xóa</button>
+                                                <input value={{id}} class="d-none" name="prNum">
+                                            </form>
+                                        </td>
+                                    </tr>
+                                    {{/each}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                {{!-- <div class="form-outline mb-4">
+                    <input type="search" class="form-control" id="datatable-search-input" placeholder="Search">
+                </div> --}}
+
+                {{!-- <div class="databale">
+                    <div class="content table-responsive table-full-width">
+                        <table class="table table-hover">
+                            <tbody>
+                                <tr>
+                                    <div class="col-sm-4">
+                                        <div class="card text-center">
+                                            <div class="card-header">
+                                                {{id}}
+                                                {{name}}
+                                            </div>
+                                            <div class="card-body">
+                                                <img src="{{img}}" alt="" width="180" height="200">
+                                            </div>
+
+                                            <div class="card-footer">{{color}}</div>
+                                            <div class="card-footer">{{price}}</div>
+                                            <div class="btnsuaxoa">
+                                                <button>Sửa</button>
+                                                <button>Xóa</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </tr>
+                                <tr>
+                                    <div class="col-sm-4">
+                                        <div class="card text-center">
+                                            <div class="card-header">
+                                                Vest nữ
+                                            </div>
+                                            <div class="card-body">
+                                                <img src="http://3.bp.blogspot.com/-UDzQ4J37WLQ/UTb5ihLxaTI/AAAAAAAAOIU/Pb4jdTxJf6U/s1600/ao+vest+nu+den+han+quoc.jpg"
+                                                    alt="" width="180" height="200">
+                                            </div>
+                                            <div class="card-footer">{{color}}</div>
+                                            <div class="card-footer">$100</div>
+                                            <div class="btnsuaxoa">
+                                                <button>Sửa</button>
+                                                <button>Xóa</button>
+                                            </div>
+                                        </div>
+                                </tr>
+                                <tr>
+                                    <div class="col-sm-4">
+                                        <div class="card text-center">
+                                            <div class="card-header">
+                                                Vest Nam đẹp
+                                            </div>
+                                            <div class="card-body">
+                                                <img src="http://www.elleman.vn/wp-content/uploads/2015/03/26/ellemanvn-3-buttton-suit.jpg"
+                                                    alt="" width="180" height="200">
+                                            </div>
+                                            <div class="btnsuaxoa">
+                                                <button>Sửa</button>
+                                                <button>Xóa</button>
+                                            </div>
+                                            <div class="card-footer">$50</div>
+                                        </div>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div> --}}
+</body>
+
+</html>
